@@ -1,0 +1,6 @@
+@GaB_VendingService_HostAddress = http://localhost:5287
+
+GET {{GaB_VendingService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
