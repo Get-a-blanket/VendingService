@@ -1,0 +1,72 @@
+name: Push-deploy
+
+on:
+  push:
+    branches: [ "master" ]
+    paths: ["GaB_VendingService/GaB_VendingService.csproj"]
+
+jobs: 
+  push:
+    needs: testing
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8'
+          
+      - name: Setup dotnet-ef
+        run: |
+          dotnet tool install --global dotnet-ef
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ssh-key: ${{ secrets.SECRET_PUSH_KEY }}
+          fetch-depth: 0
+
+      - name: Get version
+        shell: bash
+        run: |
+          repo=$(echo "${{ steps.meta.outputs.tags }}" | sed "s/:master//")
+          echo "REPO=$repo" >> $GITHUB_ENV
+          echo "REPO=$repo" 
+          read_dom () { local IFS=\> ; read -d \< ENTITY CONTENT ;}
+          while read_dom; do
+            if [[ $ENTITY = "AssemblyVersion" ]]; then
+              echo "VERSION=$CONTENT" >> $GITHUB_ENV
+              echo "VERSION=$CONTENT"
+              exit
+            fi
+          done < GaB_VendingService/GaB_VendingService.csproj
+
+      - name: Create migrations
+        run: |
+          dotnet ef migrations add ${{ env.VERSION }} --context GaB_VendingService.DbConnector.ApplicationContext --project ./GaB_VendingService/GaB_VendingService.csproj
+      
+      - name: Commit
+        shell: bash
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git add GaB_VendingService/Migrations
+          git add GaB_VendingService/Documentation.xml
+          git commit -m "Auto created migrations"
+          git tag ${{ env.VERSION }}
+
+      - name: Push master
+        shell: bash
+        run: |
+          git push origin master 
+
+      - name: Push deploy
+        shell: bash
+        run: |
+          git checkout --force deploy
+          git merge master
+          git push origin deploy 
+      
+      - name: Push tags
+        shell: bash
+        run: |
+          git push origin --tags
