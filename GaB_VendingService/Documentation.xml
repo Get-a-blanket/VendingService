@@ -1,0 +1,150 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GaB_VendingService</name>
+    </assembly>
+    <members>
+        <member name="P:GaB_VendingService.Controllers.Example.Product.Name">
+            <summary>
+            The name of the product
+            </summary>
+            <example>Men's basketball shoes</example>
+        </member>
+        <member name="P:GaB_VendingService.Controllers.Example.Product.AvailableStock">
+            <summary>
+            Quantity left in stock
+            </summary>
+            <example>10</example>
+        </member>
+        <member name="P:GaB_VendingService.Controllers.Example.Product.Sizes">
+            <summary>
+            The sizes the product is available in
+            </summary>
+            <example>["Small", "Medium", "Large"]</example>
+        </member>
+        <member name="M:GaB_VendingService.Controllers.Example.Get(System.Int32)">
+            <summary>
+            Рандомайзер погоды
+            </summary>
+            <param name="id">Рандомный параметр</param>
+            <returns>
+            Погода в Перми
+            </returns>
+        </member>
+        <member name="M:GaB_VendingService.Controllers.Example.GetById(System.Int32)">
+            <summary>
+            Retrieves a specific product by unique id
+            </summary>
+            <remarks>Awesomeness!</remarks>
+            <param name="id" example="123">The product id</param>
+            <response code="200">Product retrieved</response>
+            <response code="404">Product not found</response>
+            <response code="500">Oops! Can't lookup your product right now</response>
+        </member>
+        <member name="T:GaB_VendingService.DbConnector.Models.Cell">
+            <summary>
+            Ячейка автомата
+            </summary>
+        </member>
+        <member name="P:GaB_VendingService.DbConnector.Models.Cell.Id">
+            <summary>
+            Guid
+            </summary>
+        </member>
+        <member name="P:GaB_VendingService.DbConnector.Models.Cell.VendingMachine">
+            <summary>
+            Автомат, к которому относится ячейка
+            </summary>
+        </member>
+        <member name="P:GaB_VendingService.DbConnector.Models.Cell.VendingMachineId">
+            <summary>
+            Id автомата, к которому относится ячейка
+            </summary>
+        </member>
+        <member name="P:GaB_VendingService.DbConnector.Models.Cell.CellStatus">
+            <summary>
+            Статус использования ячейки
+            </summary>
+        </member>
+        <member name="P:GaB_VendingService.DbConnector.Models.Cell.CellStatusId">
+            <summary>
+            Id статуса использования ячейки 
+            </summary>
+        </member>
+        <member name="P:GaB_VendingService.DbConnector.Models.Cell.Enabled">
+            <summary>
+            Разрешение на использование ячейки
+            </summary>
+        </member>
+        <member name="T:GaB_VendingService.DbConnector.Models.CellStatus">
+            <summary>
+            Статус ячейки
+            </summary>
+        </member>
+        <member name="P:GaB_VendingService.DbConnector.Models.CellStatus.Id">
+            <summary>
+             Id
+            </summary>
+        </member>
+        <member name="P:GaB_VendingService.DbConnector.Models.CellStatus.Name">
+            <summary>
+            Индификатор состояния
+            </summary>
+        </member>
+        <member name="T:GaB_VendingService.DbConnector.Models.Connection">
+            <summary>
+            Способ подключения к автомату
+            </summary>
+        </member>
+        <member name="P:GaB_VendingService.DbConnector.Models.Connection.Id">
+            <summary>
+            Guid
+            </summary>
+        </member>
+        <member name="P:GaB_VendingService.DbConnector.Models.Connection.VendingMachine">
+            <summary>
+            Guid автомата, к которому относится подключение 
+            </summary>
+        </member>
+        <member name="P:GaB_VendingService.DbConnector.Models.Connection.VendingMachineId">
+            <summary>
+            Guid автомата, к которому относится подключение 
+            </summary>
+        </member>
+        <member name="P:GaB_VendingService.DbConnector.Models.Connection.ConnectionString">
+            <summary>
+            Строка подключения к автомату
+            </summary>
+        </member>
+        <member name="P:GaB_VendingService.DbConnector.Models.Connection.Enabled">
+            <summary>
+            Разрешение на использование подключения
+            </summary>
+        </member>
+        <member name="T:GaB_VendingService.DbConnector.Models.VendingMachine">
+            <summary>
+            Вендинговый аппапарат, он же автомат
+            </summary>
+        </member>
+        <member name="P:GaB_VendingService.DbConnector.Models.VendingMachine.Id">
+            <summary>
+            Guid
+            </summary>
+        </member>
+        <member name="P:GaB_VendingService.DbConnector.Models.VendingMachine.Enabled">
+            <summary>
+            Разрешение на использование автмата
+            </summary>
+        </member>
+        <member name="P:GaB_VendingService.DbConnector.Models.VendingMachine.Connections">
+            <summary>
+            Доступные подключения к автомату
+            </summary>
+        </member>
+        <member name="P:GaB_VendingService.DbConnector.Models.VendingMachine.Cells">
+            <summary>
+            Ячейки автомата
+            </summary>
+        </member>
+    </members>
+</doc>

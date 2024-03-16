@@ -1,0 +1,33 @@
+version: '3.4'
+
+services:
+  gab_vendingservice:
+    # image: ${DOCKER_REGISTRY-}gabcore
+    depends_on:
+      - postgresql
+    restart: unless-stopped
+    build:
+      context: ..
+      dockerfile: GaB_VendingService/dev.Dockerfile
+    environment:
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+    # ports:
+    #   - "8080:8080"
+    #   - "8081:8081"
+
+  postgresql:
+    image: postgres:16
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: admin
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5555:5432"
+
+networks:
+  default:
+  
+volumes:
+  db-data:
